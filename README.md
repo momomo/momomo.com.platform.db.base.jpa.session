@@ -3,7 +3,7 @@
 
 ## momomo.com.platform.db.base.jpa
 
-###### The absolute base of the JPA database related modules.
+###### The absolute base for hibernate session jpa database related modules.
 
 #### Dependencies 
 * [`momomo.com.platform.Core`](https://github.com/momomo/momomo.com.platform.Core) 
@@ -16,7 +16,7 @@
 ```xml
 <dependency>
   <groupId>com.momomo</groupId>
-  <artifactId>momomo.com.platform.db.base.jpa</artifactId>
+  <artifactId>momomo.com.platform.db.base.jpa.session</artifactId>
   <version>2.1.5</version>
 </dependency>                                                      
 ```                         
