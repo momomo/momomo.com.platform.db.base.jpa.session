@@ -62,7 +62,7 @@ public abstract class $SessionConfig<DATABASE extends $Database> {
     
     @Overridable
     protected File newSchema() {
-        return Ex.io(()-> IO.tmpFileCreate());
+        return IO.tmpFileCreate();
     }
     
     @Overridable
@@ -233,10 +233,10 @@ public abstract class $SessionConfig<DATABASE extends $Database> {
             String transactions = "thread";
             properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, transactions);
             if ("jta".equals(transactions)) {
+                // This option is just an example and requires WildFlyStandAloneJtaPlatform to be on your system
                 properties.put("hibernate.transaction.jta.platform", WildFlyStandAloneJtaPlatform.class);
             }
         }
-        
         
         {   // Cache setup
             properties.put(Environment.USE_SECOND_LEVEL_CACHE, true);
