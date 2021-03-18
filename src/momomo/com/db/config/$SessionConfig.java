@@ -12,6 +12,7 @@ import momomo.com.Strings;
 import momomo.com.annotations.informative.Overridable;
 import momomo.com.annotations.informative.Overriden;
 import momomo.com.db.$Database;
+import momomo.com.sources.Globals;
 import org.ehcache.jsr107.EhcacheCachingProvider;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -249,6 +250,12 @@ public abstract class $SessionConfig<DATABASE extends $Database> {
             // Can be used to debug connections
             properties.put("hibernate.c3p0.unreturnedConnectionTimeout", 5);
             properties.put("hibernate.c3p0.debugUnreturnedConnectionStackTraces", true);
+        }
+    
+        if ( Globals.SQL_LOGGING ) {
+            properties.put(Environment.FORMAT_SQL, "true");
+            properties.put(Environment.SHOW_SQL, "true");
+            properties.put(Environment.USE_SQL_COMMENTS, "true");
         }
     }
     
