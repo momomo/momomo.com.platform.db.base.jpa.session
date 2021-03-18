@@ -1,11 +1,10 @@
 package momomo.com.db.sessionfactory;
 
+import momomo.com.Is;
 import momomo.com.Reflects;
 import momomo.com.annotations.$Exclude;
 import momomo.com.db.$Entity;
-import momomo.com.Is;
 import momomo.com.db.session.$SessionCriteria;
-import momomo.com.reflection.Reflect;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.metadata.ClassMetadata;
@@ -96,8 +95,8 @@ public interface $SessionFactoryCriteria extends $SessionCriteria {
     private boolean buildCriteriaFields(Criteria criteria, String embedded, Object object, Set<String> ignoreFields) {
         boolean valid = false;
 
-        Class<?> clazz = object.getClass();
-        List<Field> fields = Reflect.fields(clazz);
+        Class<?>    clazz  = object.getClass();
+        List<Field> fields = Reflects.getFields(clazz);
 
         // Walk over all fields for the value class to look for properties that are set
         for (Field field : fields) {
@@ -107,7 +106,7 @@ public interface $SessionFactoryCriteria extends $SessionCriteria {
                 Object value = Reflects.getValue(object, field);
 
                 // If set, then use this value in the criteria recursively
-                if (value != null && !Reflect.isStatic(field) && !$Exclude.$.has(field, $Entity.FIND_BY_ENTITY) && !field.isAnnotationPresent(javax.persistence.Version.class)) {
+                if (value != null && !Reflects.isStatic(field) && !$Exclude.$.has(field, $Entity.FIND_BY_ENTITY) && !field.isAnnotationPresent(javax.persistence.Version.class)) {
 
                     if (buildCriteriaField(criteria, embedded, field.getName(), value)) {
                         valid = true;  // One valid is enough to set to true
