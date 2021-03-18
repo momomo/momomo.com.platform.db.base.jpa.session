@@ -20,7 +20,7 @@
 <dependency>
   <groupId>com.momomo</groupId>
   <artifactId>momomo.com.platform.db.base.jpa.session</artifactId>
-  <version>2.1.6</version>
+  <version>2.1.7</version>
 </dependency>                                                      
 ```                         
 ##### Repository
