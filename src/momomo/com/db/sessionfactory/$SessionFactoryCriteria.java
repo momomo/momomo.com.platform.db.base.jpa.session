@@ -3,7 +3,7 @@ package momomo.com.db.sessionfactory;
 import momomo.com.Is;
 import momomo.com.Reflects;
 import momomo.com.annotations.$Exclude;
-import momomo.com.db.$Entity;
+import momomo.com.db.entities.$Entity;
 import momomo.com.db.session.$SessionCriteria;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -106,7 +106,7 @@ public interface $SessionFactoryCriteria extends $SessionCriteria {
                 Object value = Reflects.getValue(object, field);
 
                 // If set, then use this value in the criteria recursively
-                if (value != null && !Reflects.isStatic(field) && !$Exclude.$.has(field, $Entity.FIND_BY_ENTITY) && !field.isAnnotationPresent(javax.persistence.Version.class)) {
+                if (value != null && !Reflects.isStatic(field) && !$Exclude.$.has(field, $Entity.Cons.FIND_BY_ENTITY) && !field.isAnnotationPresent(javax.persistence.Version.class)) {
 
                     if (buildCriteriaField(criteria, embedded, field.getName(), value)) {
                         valid = true;  // One valid is enough to set to true

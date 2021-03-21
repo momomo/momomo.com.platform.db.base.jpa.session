@@ -1,8 +1,8 @@
 package momomo.com.db.session;
 
 import momomo.com.Is;
-import momomo.com.db.$Entity;
-import momomo.com.db.$EntityId;
+import momomo.com.db.entities.$Entity;
+import momomo.com.db.entities.$EntityId;
 import momomo.com.db.$Criteria;
 import org.hibernate.CacheMode;
 import org.hibernate.Criteria;

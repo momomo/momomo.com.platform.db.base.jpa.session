@@ -10,7 +10,6 @@ import org.hibernate.ScrollableResults;
 import org.hibernate.internal.ScrollableResultsImpl;
 
 import java.lang.reflect.Field;
-import java.sql.ResultSet;
 import java.util.Map;
 
 /**
@@ -41,7 +40,7 @@ public abstract class $SessionSql extends $Sql<$SessionSql> implements $SqlQuery
     private static $SqlResultSet query(ScrollableResults scroll) {
         Field field  = Reflects.getField(ScrollableResultsImpl.class, "resultSet");
         
-        return new $SqlResultSet( (ResultSet) Reflects.getValue(scroll, field) );
+        return new $SqlResultSet( Reflects.getValue(scroll, field) );
     }
     
 }

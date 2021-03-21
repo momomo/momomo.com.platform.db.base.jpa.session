@@ -1,4 +1,4 @@
-package momomo.com.db.config;
+package momomo.com.db;
 
 /**
  * An ImplicitNamingStrategy implementation which uses full composite paths
@@ -11,6 +11,6 @@ package momomo.com.db.config;
  *
  * @author Joseph S.
  */
-public class $SessionConfigNamingStrategyImplicit extends org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl {
+public class $SessionConfigEntityNamingStrategyImplicit extends org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl {
 
 }

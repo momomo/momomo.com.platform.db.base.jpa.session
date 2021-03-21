@@ -1,6 +1,7 @@
 package momomo.com.db;
 
 import momomo.com.Reflects;
+import momomo.com.db.entities.$Entity;
 import org.hibernate.CacheMode;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;

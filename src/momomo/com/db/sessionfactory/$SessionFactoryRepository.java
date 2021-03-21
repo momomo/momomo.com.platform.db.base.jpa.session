@@ -1,13 +1,13 @@
 package momomo.com.db.sessionfactory;
 
-import momomo.com.db.$Entity;
+import momomo.com.db.entities.$Entity;
 import momomo.com.db.session.$SessionRepository;
 import org.hibernate.SessionFactory;
 
 /**
  * @author Joseph S.
  */
-public interface $SessionFactoryRepository extends $SessionRepository, $SessionFactoryPersistence, $SessionFactoryQuery, $SessionFactoryValidate, $SessionFactoryCriteria, $SessionFactoryNewAndRequire, $SessionFactoryOther, $SessionFactoryRepositoryDeclaration {
+public interface $SessionFactoryRepository extends $SessionRepository, $SessionFactoryPersistence, $SessionFactoryQuery, $SessionFactoryValidate, $SessionFactoryCriteria, $SessionFactoryNewRequire, $SessionFactoryOther, $SessionFactoryRepositoryDeclaration {
 
     SessionFactory sessionFactory();
 

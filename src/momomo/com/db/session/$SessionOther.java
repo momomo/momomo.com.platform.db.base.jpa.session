@@ -1,7 +1,7 @@
 package momomo.com.db.session;
 
-import momomo.com.db.$Entity;
 import momomo.com.db.$RepositoryOther;
+import momomo.com.db.entities.$Entity;
 import org.hibernate.Session;
 import org.hibernate.engine.spi.PersistenceContext;
 import org.hibernate.engine.spi.SessionImplementor;

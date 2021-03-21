@@ -1,4 +1,4 @@
-package momomo.com.db.config;
+package momomo.com.db;
 
 import org.hibernate.boot.model.naming.Identifier;
 import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * 
  * @author Joseph S.
  */
-public class $SessionConfigNamingStrategyPhysical extends PhysicalNamingStrategyStandardImpl implements Serializable {
+public class $SessionConfigEntityNamingStrategyPhysical extends PhysicalNamingStrategyStandardImpl implements Serializable {
 
     public static final String             UNDERSCORE = "_";
     public static final ArrayList<Surgery> SURGERIES  = new ArrayList<>();

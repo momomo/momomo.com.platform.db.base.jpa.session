@@ -6,7 +6,7 @@ import org.hibernate.Session;
 /**
  * @author Joseph S.
  */
-public interface $SessionNewAndRequire extends $SessionRepositoryDeclaration {
+public interface $SessionNewRequire extends $SessionRepositoryDeclaration {
     @Private boolean DEFAULT_OPEN = false;
     
     Session newSession    ();
@@ -17,13 +17,6 @@ public interface $SessionNewAndRequire extends $SessionRepositoryDeclaration {
     }
     
     default Session session(boolean open) {
-        if ( open ) {
-            // Will always create a new session
-            return newSession();
-        }
-        else {
-            // Will open one if there is none, otherwise will use the same
-            return requireSession();
-        }
+        return open ? newSession() : requireSession();
     }
 }

@@ -1,6 +1,6 @@
 package momomo.com.db.sessionfactory;
 
-import momomo.com.db.$Entity;
+import momomo.com.db.entities.$Entity;
 import momomo.com.db.session.$SessionValidate;
 
 /**
