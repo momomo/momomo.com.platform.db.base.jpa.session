@@ -20,7 +20,7 @@ import java.util.HashMap;
 /**
  * @author Joseph S.
  */
-public abstract class $SessionConfigThreadLocalSessionContext extends AbstractCurrentSessionContext {
+public abstract class $SessionConfigThreadLocalSessionContextUnwrappedTracked extends AbstractCurrentSessionContext {
     
     /**
      * Currently the best way to figure out if a session factory is configured with this {@link org.hibernate.context.spi.CurrentSessionContext}
@@ -28,9 +28,9 @@ public abstract class $SessionConfigThreadLocalSessionContext extends AbstractCu
      * and can not be accessed other than through reflection. 
      * We register ours instead and so we can a
      */
-    private static final HashMap<SessionFactory, $SessionConfigThreadLocalSessionContext> SESSION_FACTORIES = new HashMap<>();
+    private static final HashMap<SessionFactory, $SessionConfigThreadLocalSessionContextUnwrappedTracked> SESSION_FACTORIES = new HashMap<>();
     
-    protected $SessionConfigThreadLocalSessionContext(SessionFactoryImplementor factory) {
+    protected $SessionConfigThreadLocalSessionContextUnwrappedTracked(SessionFactoryImplementor factory) {
         super(factory);
     
         SESSION_FACTORIES.put(factory, this);
@@ -39,7 +39,7 @@ public abstract class $SessionConfigThreadLocalSessionContext extends AbstractCu
     /**
      * Returns null if there is no contexts for this factory
      */
-    public static $SessionConfigThreadLocalSessionContext get(SessionFactory factory) {
+    public static $SessionConfigThreadLocalSessionContextUnwrappedTracked get(SessionFactory factory) {
         return SESSION_FACTORIES.get(factory);
     }
     
@@ -80,10 +80,10 @@ public abstract class $SessionConfigThreadLocalSessionContext extends AbstractCu
     /////////////////////////////////////////////////////////////////////
     
     protected static class CleanupSession implements Synchronization, Serializable {
-        protected final $SessionConfigThreadLocalSessionContext context;
+        protected final $SessionConfigThreadLocalSessionContextUnwrappedTracked context;
         private   final Session                    session;
     
-        public CleanupSession($SessionConfigThreadLocalSessionContext context, Session session) {
+        public CleanupSession($SessionConfigThreadLocalSessionContextUnwrappedTracked context, Session session) {
             this.context = context;
             this.session = session;
         }

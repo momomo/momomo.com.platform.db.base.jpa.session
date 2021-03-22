@@ -1,9 +1,3 @@
-/*
- * Hibernate, Relational Persistence for Idiomatic Java
- *
- * License: GNU Lesser General Public License (LGPL), version 2.1 or later.
- * See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
- */
 package momomo.com.db;
 
 import momomo.com.log;
@@ -19,7 +13,7 @@ import java.util.Map;
 /**
  * @author Joseph S.
  */
-public class $SessionConfigThreadLocalSessionContextCrazySane extends $SessionConfigThreadLocalSessionContext {
+public class $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazySane extends $SessionConfigThreadLocalSessionContextUnwrappedTracked {
     
     /////////////////////////////////////////////////////////////////////
     
@@ -29,7 +23,7 @@ public class $SessionConfigThreadLocalSessionContextCrazySane extends $SessionCo
      * for those that do not want to take any risks of introducing change to a system currently dealing with the old way. 
      */
     public enum InsanityLevel {
-        CRAZY_INSANE, CRAZY_SANE, CRAZY_EASYGOING
+        CRAZY_INSANE, CRAZY_SANE, CRAZY_LAXED
     }
     
     /////////////////////////////////////////////////////////////////////
@@ -37,11 +31,11 @@ public class $SessionConfigThreadLocalSessionContextCrazySane extends $SessionCo
     private static final ThreadLocal<Map<SessionFactory,Session>> THREAD_LOCAL = ThreadLocal.withInitial(HashMap::new);
     private        final InsanityLevel insanityLevel;
     
-    public $SessionConfigThreadLocalSessionContextCrazySane(SessionFactoryImplementor factory) {
+    public $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazySane(SessionFactoryImplementor factory) {
         this(factory, InsanityLevel.CRAZY_SANE);
     }
     
-    protected $SessionConfigThreadLocalSessionContextCrazySane(SessionFactoryImplementor factory, InsanityLevel insanityLevel) {
+    protected $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazySane(SessionFactoryImplementor factory, InsanityLevel insanityLevel) {
         super( factory );
         
         this.insanityLevel = insanityLevel;
@@ -85,7 +79,7 @@ public class $SessionConfigThreadLocalSessionContextCrazySane extends $SessionCo
                 case CRAZY_SANE -> {
                     crazySane_terminateOrphanedSession(previous);
                 }
-                case CRAZY_EASYGOING -> {
+                case CRAZY_LAXED -> {
                     relaxedTerminateSoCalledOrphanedSession(previous);
                 }
             }

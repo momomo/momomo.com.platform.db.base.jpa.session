@@ -289,8 +289,8 @@ public abstract class $SessionConfig<DATABASE extends $Database> {
      * If true will ensure our sessionfactory is in use which always tracks any open session, wether through sessionFactory.getCurrentSession() or sessionFactory.openSession(). 
      * Note that the previous statement is only through for the two method calls as there are other ways to open a session. 
      * When using our API which only has newSession() and requireSession() methods, sessions will be tracked only if you are using any of our
-     *   {@link momomo.com.db.$SessionConfigThreadLocalSessionContext} 
-     *   {@link momomo.com.db.$SessionConfigThreadLocalSessionContextRecommended} 
+     *   {@link $SessionConfigThreadLocalSessionContextUnwrappedTracked} 
+     *   {@link $SessionConfigThreadLocalSessionContextUnwrappedTrackedStackRecommended} 
      *   {@link momomo.com.db.$SessionConfigThreadLocalSessionContextUnwrapped} 
      * 
      * implementations with
@@ -312,7 +312,7 @@ public abstract class $SessionConfig<DATABASE extends $Database> {
                     SessionFactory sessionFactory = session.getSessionFactory();
                     
                     // We check if the current setup is using our LocalSessionContext which has features for taking care of it.  
-                    $SessionConfigThreadLocalSessionContext context = $SessionConfigThreadLocalSessionContext.get(sessionFactory);
+                    $SessionConfigThreadLocalSessionContextUnwrappedTracked context = $SessionConfigThreadLocalSessionContextUnwrappedTracked.get(sessionFactory);
                     if ( context != null ) {
                         // Yes, it is ours.
                         context.bind(session);  // We bind it
@@ -326,7 +326,7 @@ public abstract class $SessionConfig<DATABASE extends $Database> {
                     SessionFactory sessionFactory = session.getSessionFactory();
                     
                     // We check if the current setup is using our LocalSessionContext which has features for taking care of it.  
-                    $SessionConfigThreadLocalSessionContext context = $SessionConfigThreadLocalSessionContext.get(sessionFactory);
+                    $SessionConfigThreadLocalSessionContextUnwrappedTracked context = $SessionConfigThreadLocalSessionContextUnwrappedTracked.get(sessionFactory);
                     if ( context != null ) {
                         // Yes, it is ours.
                         context.unbind(session);  // We bind it
@@ -387,7 +387,7 @@ public abstract class $SessionConfig<DATABASE extends $Database> {
         properties.put(Environment.ISOLATION, Connection.TRANSACTION_READ_COMMITTED);
         
         {
-            properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, $SessionConfigThreadLocalSessionContextRecommended.class.getName());
+            properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, $SessionConfigThreadLocalSessionContextUnwrappedTrackedStackRecommended.class.getName());
             // properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, $TTT.class.getName());
             // properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, $ThreadLocalSessionContextUnwrappedCrazySane.class.getName());
             // These options are just examples and requires WildFlyStandAloneJtaPlatform to be on your system

@@ -1,9 +1,3 @@
-/*
- * Hibernate, Relational Persistence for Idiomatic Java
- *
- * License: GNU Lesser General Public License (LGPL), version 2.1 or later.
- * See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
- */
 package momomo.com.db;
 
 import org.hibernate.engine.spi.SessionFactoryImplementor;
@@ -17,7 +11,7 @@ import org.hibernate.engine.spi.SessionFactoryImplementor;
  * 
  * Another part of it is that if you open a new session through bind which is likely very rare occurrence, 
  * then hiberante will just rollback the previous session on thread local and even eat any exceptions and just log them.
- * {@link $SessionConfigThreadLocalSessionContextCrazySane.InsanityLevel#CRAZY_INSANE} seemed fitting.
+ * {@link $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazySane.InsanityLevel#CRAZY_INSANE} seemed fitting.
  *
  * We do not recommend this for our transaction API either. 
  *
@@ -31,14 +25,14 @@ import org.hibernate.engine.spi.SessionFactoryImplementor;
  *      or 
  *   properties.put('hibernate.current_session_context_class', 'org.hibernate.context.internal.ThreadLocalSessionContext')
  *   
- * we recommend you use our almost identical copy {@link $SessionConfigThreadLocalSessionContextCrazyInsane}
+ * we recommend you use our almost identical copy {@link $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazyInsane}
  * as it is identical in behaviour with only difference in that it keeps track of registered sessionfactories using it, 
  * as well not wrapping sessions at all. But really, dont.   
  *   
  * @author Joseph S.
  */
-public class $SessionConfigThreadLocalSessionContextCrazyInsane extends $SessionConfigThreadLocalSessionContextCrazySane {
-    public $SessionConfigThreadLocalSessionContextCrazyInsane(SessionFactoryImplementor factory) {
+public class $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazyInsane extends $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazySane {
+    public $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazyInsane(SessionFactoryImplementor factory) {
         super(factory, InsanityLevel.CRAZY_INSANE);
     }
 }

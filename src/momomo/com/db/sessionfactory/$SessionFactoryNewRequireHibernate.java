@@ -1,6 +1,6 @@
 package momomo.com.db.sessionfactory;
 
-import momomo.com.db.$SessionConfigThreadLocalSessionContext;
+import momomo.com.db.$SessionConfigThreadLocalSessionContextUnwrappedTracked;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -29,7 +29,7 @@ public interface $SessionFactoryNewRequireHibernate extends $SessionFactoryNewRe
         // Not our sessionFactory. 
         
         // We check if the current setup is using our LocalSessionContext which has features for taking care of it.  
-        $SessionConfigThreadLocalSessionContext context = $SessionConfigThreadLocalSessionContext.get(sessionFactory);
+        $SessionConfigThreadLocalSessionContextUnwrappedTracked context = $SessionConfigThreadLocalSessionContextUnwrappedTracked.get(sessionFactory);
         if ( context != null ) {
             // Yes, it is ours. 
             return context.openSession();
