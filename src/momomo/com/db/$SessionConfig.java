@@ -4,6 +4,7 @@ package momomo.com.db;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import momomo.com.Ex;
+import momomo.com.Globals;
 import momomo.com.IO;
 import momomo.com.Is;
 import momomo.com.Lambda;
@@ -13,7 +14,6 @@ import momomo.com.annotations.informative.Overridable;
 import momomo.com.annotations.informative.Overriden;
 import momomo.com.db.sessionfactory.$SessionFactory;
 import momomo.com.log;
-import momomo.com.Globals;
 import org.ehcache.jsr107.EhcacheCachingProvider;
 import org.hibernate.EmptyInterceptor;
 import org.hibernate.Session;
@@ -301,6 +301,19 @@ public abstract class $SessionConfig<DATABASE extends $Database> {
         return false;
     }
     
+    @Overridable protected boolean isSqlLoggingEnabled() {
+        return Globals.Configurable.DATABASE_SQL_LOGGING.isTrue();
+    }
+    
+    @Overridable protected boolean isSecondLevelCacheEnabled() {
+        return true;
+    }
+    
+    @Overridable protected boolean isDebugModeEnabled() {
+        return false;
+    }
+    
+    
     @Overridable protected void onSessionFactoryOptions(SessionFactoryOptionsBuilder options) {
         if ( Is.Off ) {
             // Leave for reference, not used anymore due to other strategies being employed instead
@@ -365,24 +378,24 @@ public abstract class $SessionConfig<DATABASE extends $Database> {
     
     protected void properties() {
         properties.put(Environment.DIALECT, dialect().getName());
-        properties.put(Environment.DRIVER,  driverClass().getName());
-        properties.put(Environment.URL, url());
-        properties.put(Environment.USER, username());
-        properties.put(Environment.PASS, password());
+        properties.put(Environment.DRIVER , driverClass().getName());
+        properties.put(Environment.URL    , url());
+        properties.put(Environment.USER   , username());
+        properties.put(Environment.PASS   , password());
         
         // Nothing visibly better but we leave it
-        properties.put(Environment.STATEMENT_BATCH_SIZE, BATCH_SIZE);
+        properties.put(Environment.STATEMENT_BATCH_SIZE    , BATCH_SIZE);
         properties.put(Environment.DEFAULT_BATCH_FETCH_SIZE, BATCH_SIZE);
         
-        properties.put(Environment.C3P0_ACQUIRE_INCREMENT          , 3  );
-        properties.put(Environment.C3P0_MIN_SIZE                   , 3  );
-        properties.put(Environment.C3P0_MAX_SIZE                   , 50 );
-        properties.put("hibernate.c3p0.maxStatementsPerConnection" , 99 );
+        properties.put(Environment.C3P0_ACQUIRE_INCREMENT          , 3 );
+        properties.put(Environment.C3P0_MIN_SIZE                   , 3 );
+        properties.put(Environment.C3P0_MAX_SIZE                   , 50);
+        properties.put("hibernate.c3p0.maxStatementsPerConnection" , 99);
         
-        // properties.put(Environment.C3P0_MAX_STATEMENTS   , 75);
-        // properties.put("hibernate.c3p0.maxConnectionAge", 10  );
-        // properties.put("hibernate.c3p0.autoCommitOnClose", true   );
-        // properties.put("hibernate.c3p0.unreturnedConnectionTimeout", true   );
+        // properties.put(Environment.C3P0_MAX_STATEMENTS             , 75);
+        // properties.put("hibernate.c3p0.maxConnectionAge"           , 10);
+        // properties.put("hibernate.c3p0.autoCommitOnClose"          , true);
+        // properties.put("hibernate.c3p0.unreturnedConnectionTimeout", true);
         
         properties.put(Environment.ISOLATION, Connection.TRANSACTION_READ_COMMITTED);
         
@@ -396,7 +409,7 @@ public abstract class $SessionConfig<DATABASE extends $Database> {
             // properties.put("hibernate.transaction.jta.platform", WildFlyStandAloneJtaPlatform.class);
         }
         
-        {   // Cache setup
+        if (isSecondLevelCacheEnabled()){   // Cache setup
             properties.put(Environment.USE_SECOND_LEVEL_CACHE, true);
             properties.put(Environment.USE_QUERY_CACHE, true);
             properties.put(Environment.CACHE_REGION_FACTORY, JCacheRegionFactory.class.getName());
@@ -404,17 +417,16 @@ public abstract class $SessionConfig<DATABASE extends $Database> {
             // properties.put("hibernate.javax.cache.uri", "App/config/CacheConfig.xml");
         }
         
-        if ( false ) {
+        if (isDebugModeEnabled()) {
             // Can be used to debug connections
-            properties.put("hibernate.c3p0.unreturnedConnectionTimeout", 5);
+            properties.put("hibernate.c3p0.unreturnedConnectionTimeout"         , 5);
             properties.put("hibernate.c3p0.debugUnreturnedConnectionStackTraces", true);
         }
         
-        if ( Globals.Configurable.DATABASE_SQL_LOGGING.isTrue() ) {
+        if ( isSqlLoggingEnabled() ) {
             properties.put(Environment.FORMAT_SQL       , "true");
             properties.put(Environment.SHOW_SQL         , "true");
             properties.put(Environment.USE_SQL_COMMENTS , "true");
         }
     }
-    
 }
