@@ -1,7 +1,7 @@
 <!---
 -->
 
-###### The absolute base of our database related hibernate session based jpa modules
+##### The absolute base of our database related hibernate session based jpa modules
 
 ##### Dependencies 
 * [`momomo.com.platform.Core`](https://github.com/momomo/momomo.com.platform.Core) 
