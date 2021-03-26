@@ -4,12 +4,12 @@
 ##### The absolute base of our database related hibernate session based jpa modules
 
 ##### Dependencies 
-* [`momomo.com.platform.Core`](https://github.com/momomo/momomo.com.platform.Core) 
-* [`momomo.com.platform.Lambda`](https://github.com/momomo/momomo.com.platform.Lambda)
-* [`momomo.com.platform.db.base.jpa`](https://github.com/momomo/momomo.com.platform.db.base.jpa)
+* **[`momomo.com.platform.Core`](https://github.com/momomo/momomo.com.platform.Core)** 
+* **[`momomo.com.platform.Lambda`](https://github.com/momomo/momomo.com.platform.Lambda)**
+* **[`momomo.com.platform.db.base.jpa`](https://github.com/momomo/momomo.com.platform.db.base.jpa)**
 
 #### Used by
-* [`momomo.com.platform.db.base.transactional.Hibernate`](https://github.com/momomo/momomo.com.platform.db.transactional.Hibernate) 
+* **[`momomo.com.platform.db.base.transactional.Hibernate`](https://github.com/momomo/momomo.com.platform.db.transactional.Hibernate)** 
 
 ##### Maven dependencies available on maven central [search.maven.org](https://search.maven.org/search?q=com.momomo)
 ##### Dependency   
