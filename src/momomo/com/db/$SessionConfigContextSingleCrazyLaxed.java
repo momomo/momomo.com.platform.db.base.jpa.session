@@ -13,8 +13,8 @@ import org.hibernate.engine.spi.SessionFactoryImplementor;
  * 
  * @author Joseph S.
  */
-public class $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazyLaxed extends $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazySane {
-    public $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazyLaxed(SessionFactoryImplementor factory) {
+public class $SessionConfigContextSingleCrazyLaxed extends $SessionConfigContextSingleCrazySane {
+    public $SessionConfigContextSingleCrazyLaxed(SessionFactoryImplementor factory) {
         super( factory, InsanityLevel.CRAZY_LAXED);
     }
 }

@@ -1,7 +1,7 @@
 package momomo.com.db.sessionfactory;
 
-import momomo.com.db.$SessionConfigThreadLocalSessionContextUnwrappedTracked;
-import momomo.com.db.$SessionConfigThreadLocalSessionContextUnwrappedTrackedStackRecommended;
+import momomo.com.db.$SessionConfigContextBase;
+import momomo.com.db.$SessionConfigContextListRecommended;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.boot.spi.MetadataImplementor;
@@ -18,13 +18,13 @@ import org.hibernate.internal.SessionFactoryImpl;
  * @author Joseph S.
  */
 public class $SessionFactory extends SessionFactoryImpl {
-    private final $SessionConfigThreadLocalSessionContextUnwrappedTracked context;
+    private final $SessionConfigContextBase context;
     
     public $SessionFactory(MetadataImplementor metadata, SessionFactoryOptions options, QueryPlanCache.QueryPlanCreator queryPlanCacheFunction) {
         super(metadata, options, queryPlanCacheFunction);
     
         // The super one is private, but if it was ours we've registered it and can get it as such
-        this.context = $SessionConfigThreadLocalSessionContextUnwrappedTrackedStackRecommended.get(this); 
+        this.context = $SessionConfigContextListRecommended.get(this); 
     }
     
     @Override

@@ -17,7 +17,7 @@ import org.hibernate.engine.spi.SessionFactoryImplementor;
  * Nagging about this exists throughout our code comments. 
  * 
  * If you really like Hibernates but would like our handling we recommend you use
- * {@link $SessionConfigThreadLocalSessionContextUnwrappedUntrackedNotRecommended}
+ * {@link $SessionConfigContextUntrackedLeastRecommended}
  * 
  * but really we recommend
  * 
@@ -27,9 +27,9 @@ import org.hibernate.engine.spi.SessionFactoryImplementor;
  * 
  * @author Joseph S.
  */
-public class $SessionConfigThreadLocalSessionContextUnwrappedUntrackedNotRecommended extends ThreadLocalSessionContext {
+public class $SessionConfigContextUntrackedLeastRecommended extends ThreadLocalSessionContext {
     
-    public $SessionConfigThreadLocalSessionContextUnwrappedUntrackedNotRecommended(SessionFactoryImplementor factory) {
+    public $SessionConfigContextUntrackedLeastRecommended(SessionFactoryImplementor factory) {
         super(factory);
     }
     

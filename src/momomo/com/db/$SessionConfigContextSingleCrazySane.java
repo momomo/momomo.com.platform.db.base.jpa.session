@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * @author Joseph S.
  */
-public class $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazySane extends $SessionConfigThreadLocalSessionContextUnwrappedTracked {
+public class $SessionConfigContextSingleCrazySane extends $SessionConfigContextBase {
     
     /////////////////////////////////////////////////////////////////////
     
@@ -31,11 +31,11 @@ public class $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazyS
     private static final ThreadLocal<Map<SessionFactory,Session>> THREAD_LOCAL = ThreadLocal.withInitial(HashMap::new);
     private        final InsanityLevel insanityLevel;
     
-    public $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazySane(SessionFactoryImplementor factory) {
+    public $SessionConfigContextSingleCrazySane(SessionFactoryImplementor factory) {
         this(factory, InsanityLevel.CRAZY_SANE);
     }
     
-    protected $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazySane(SessionFactoryImplementor factory, InsanityLevel insanityLevel) {
+    protected $SessionConfigContextSingleCrazySane(SessionFactoryImplementor factory, InsanityLevel insanityLevel) {
         super( factory );
         
         this.insanityLevel = insanityLevel;

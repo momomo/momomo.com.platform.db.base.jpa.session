@@ -30,9 +30,9 @@ import java.util.Map;
  * 
  * We also provide {@link sessionfactory.$SessionFactory} implementation which also synchronize the main openSession() call as well which the default {@link org.hibernate.internal.SessionFactoryImpl} does not! 
  *
- * All our classes that implement our base class {@link $SessionConfigThreadLocalSessionContextUnwrappedTracked} such as
+ * All our classes that implement our base class {@link $SessionConfigContextBase} such as
  * 
- *   - {@link $SessionConfigThreadLocalSessionContextUnwrappedTrackedStackRecommended}
+ *   - {@link $SessionConfigContextListRecommended}
  *   - {@link $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazyInsane}  # Multiple sessions are not allowed. Based on Hibernates limited implementation which rollbacks and terminates any previous existing session on threadlocal while creating / opening a new one. Eats exception should there be one while rolling back and only logs it! Crazy, insane? They even roll you back! And if there is no error you won't know they rolled you! If there is an error, it is basically silent! No bubbling earning it the name Insane.  
  *   - {@link $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazySane}    # Multiple sessions are not allowed. Based on Hibernates limited implementation which rollbacks and terminates any previous existing session on threadlocal while creating / opening a new one. Throws exception should there be one while rolling back. Crazy, sane? We still think rolling back is crazy, so we retain the crazy name, but at least is not is not silent, as we throw the rollback exception so it bubbles up should there be one, earning it the name Sane.  
  *   - {@link $SessionConfigThreadLocalSessionContextUnwrappedTrackedSingleCrazyLaxed}   # Multiple sessions are allowed    . Based on Hibernates limited implementation which does not terminate or do anything with previous session, allows it to coexist. No rollback occurs. The developer might still terminate, commit and manually handle any previous transaction created. Still Crazy, since when you close the new session, the previous one can not be accessed, despite the thread actually having one. Crazy, but Laxed.    
@@ -41,16 +41,16 @@ import java.util.Map;
  * 
  * Using implementations based on
  * 
- * {@link $SessionConfigThreadLocalSessionContextUnwrappedTracked}
+ * {@link $SessionConfigContextBase}
  * 
  * are still ABLE to keep track of openSession() calls in case you are not using our {@link sessionfactory.$SessionFactory} but only if you use our API to call openSession().
  * 
  * If you want to be sure you would need to tell Hiberante to use our {@link sessionfactory.$SessionFactory}. You can do this simply returning true in {@link $SessionConfig#useMomomoSessionFactory()}.   
- * but you still have to use an implementation based on {@link $SessionConfigThreadLocalSessionContextUnwrappedTracked}.
+ * but you still have to use an implementation based on {@link $SessionConfigContextBase}.
  * 
  * You would do this using
  * 
- *   properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, {@link $SessionConfigThreadLocalSessionContextUnwrappedTrackedStackRecommended}.class.getName());
+ *   properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, {@link $SessionConfigContextListRecommended}.class.getName());
  * 
  * which is already default in our {@link $SessionConfig#properties()}
  * 
@@ -75,10 +75,10 @@ import java.util.Map;
  *  
  * @author Joseph S.
  */
-public class $SessionConfigThreadLocalSessionContextUnwrappedTrackedStackRecommended extends $SessionConfigThreadLocalSessionContextUnwrappedTracked {
+public class $SessionConfigContextListRecommended extends $SessionConfigContextBase {
     private static final ThreadLocal<Map<SessionFactory, SessionsTracker>> THREAD_LOCAL = ThreadLocal.withInitial(HashMap::new);
     
-    public $SessionConfigThreadLocalSessionContextUnwrappedTrackedStackRecommended(SessionFactoryImplementor factory) {
+    public $SessionConfigContextListRecommended(SessionFactoryImplementor factory) {
         super( factory );
     }
     
