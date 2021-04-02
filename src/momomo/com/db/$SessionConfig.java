@@ -3,7 +3,6 @@ package momomo.com.db;
 
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import momomo.com.Ex;
 import momomo.com.Globals;
 import momomo.com.IO;
 import momomo.com.Is;
@@ -122,7 +121,12 @@ public abstract class $SessionConfig<DATABASE extends $Database> {
     }
     
     protected final boolean existsDB() {
-        return Ex.runtime(database::exists);
+        try {
+            return database.exists();    
+        }
+        catch(RuntimeException e) {
+            return false;
+        }
     }
     
     @Overridable

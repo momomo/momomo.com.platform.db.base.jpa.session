@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 /**
  * @author Joseph S.
  */
-public interface $SessionFactoryNewRequireHibernate extends $SessionFactoryNewRequire, $SessionFactoryRepositoryHibernateDeclaration {
+public interface $SessionFactoryNewRequireHibernate extends $SessionFactoryNewRequire, $SessionFactoryRepositoryDeclaration {
     
     /**
      * We override it for Hibernate! 
