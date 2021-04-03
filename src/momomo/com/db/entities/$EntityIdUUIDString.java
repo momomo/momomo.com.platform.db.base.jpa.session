@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class $EntityIdUUIDString implements $EntityId<String> {
+public abstract class $EntityIdUUIDString implements $EntityId<String> {
     
     @Id
     @GeneratedValue(generator = "generator-name-is-uuid2")

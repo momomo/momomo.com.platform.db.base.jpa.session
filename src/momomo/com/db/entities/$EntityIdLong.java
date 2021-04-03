@@ -14,7 +14,8 @@ import javax.persistence.MappedSuperclass;
 /**
  * @author Joseph S.
  */
-@MappedSuperclass public abstract class $EntityIdLong implements $EntityId<Long> {
+@MappedSuperclass 
+public abstract class $EntityIdLong implements $EntityId<Long> {
     
     public static class Cons extends $EntityId.Cons {
         public static final String GENERATOR_ID       = "momomo.com.SequenceStyleGenerator";

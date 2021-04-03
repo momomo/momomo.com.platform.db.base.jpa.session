@@ -13,7 +13,7 @@ import java.util.UUID;
  * @author Joseph S.
  */
 @MappedSuperclass
-public class $EntityIdUUID implements $EntityId<UUID> {
+public abstract class $EntityIdUUID implements $EntityId<UUID> {
     
     @Id
     @GeneratedValue
