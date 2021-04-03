@@ -11,11 +11,15 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class $EntityIdUUIDString implements $EntityId<String> {
     
-    @Id
-    @GeneratedValue(generator = "generator-name-is-uuid2")
-    @GenericGenerator(name = "generator-name-is-uuid2", strategy = "uuid2")
-    @Column(name = "uuid")
-    private String id;
+    public static class Cons extends $EntityId.Cons {
+        public static final String GENERATOR_NAME_IS_UUID_2_AS_STRING = "generator-name-is-uuid2-as-string";
+        public static final String STRATEGY                           = "uuid2";
+    }
+    
+    @GeneratedValue(generator = Cons.GENERATOR_NAME_IS_UUID_2_AS_STRING)
+    @GenericGenerator(name = Cons.GENERATOR_NAME_IS_UUID_2_AS_STRING, strategy = Cons.STRATEGY)
+    @Column(name = Cons.id)
+    @Id protected String id;
     
     @Override
     public String getId() {

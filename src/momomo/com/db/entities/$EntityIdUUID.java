@@ -15,11 +15,14 @@ import java.util.UUID;
 @MappedSuperclass
 public abstract class $EntityIdUUID implements $EntityId<UUID> {
     
-    @Id
+    public static class Cons extends $EntityId.Cons {
+        public static final String TYPE = "uuid-char";
+    }
+    
     @GeneratedValue
-    @Type(type = "uuid-char")
-    @Column(length = 36)
-    UUID id;
+    @Type(type = Cons.TYPE)
+    @Column(name = Cons.id, length = 36)
+    @Id protected UUID id;
     
     @Override
     public UUID getId() {

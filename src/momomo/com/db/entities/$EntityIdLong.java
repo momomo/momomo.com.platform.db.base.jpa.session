@@ -1,7 +1,6 @@
 /* Copyright(C) 2014 - 2020 Momomo LTD. Proprietary and confidential. Usage of this file on any medium without a written consent by Momomo LTD. is strictly prohibited. All Rights Reserved. */
 package momomo.com.db.entities;
 
-import momomo.com.annotations.informative.Final;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.id.enhanced.SequenceStyleGenerator;
@@ -23,7 +22,6 @@ public abstract class $EntityIdLong implements $EntityId<Long> {
         public static final long   INDEX_START        = 1L;
     }
     
-    @Id
     @GenericGenerator(
         /**
          * This one works as GenerationType.IDENTITY but works for table per subclass inheritance as well!
@@ -38,10 +36,9 @@ public abstract class $EntityIdLong implements $EntityId<Long> {
     )
     @GeneratedValue(generator = Cons.GENERATOR_ID)
     @Column(name = Cons.id)
-    Long id;
+    @Id protected Long id;
     
-    @Override
-    @Final public Long getId() {
+    @Override public Long getId() {
         return this.id;
     }
     
