@@ -2,23 +2,16 @@ package momomo.com.db.session;
 
 import momomo.com.Reflects;
 import momomo.com.annotations.informative.Protected;
-import momomo.com.db.entities.$Entity;
 import momomo.com.db.$RepositoryPersistence;
-import org.hibernate.Session;
+import momomo.com.db.entities.$Entity;
 
 import java.io.Serializable;
 
 /**
  * @author Joseph S.
  */
-public interface $SessionPersistence extends $RepositoryPersistence, $SessionRepositoryDeclaration {
+public interface $SessionPersistence extends $RepositoryPersistence, $SessionDeclaration {
     
-    /////////////////////////////////////////////////////////////////////
-    
-    private Session session() {
-        return repository().session();
-    }
-
     /////////////////////////////////////////////////////////////////////
     
     @Override

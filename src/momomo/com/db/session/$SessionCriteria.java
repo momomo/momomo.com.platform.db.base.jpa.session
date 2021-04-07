@@ -1,12 +1,11 @@
 package momomo.com.db.session;
 
 import momomo.com.Is;
+import momomo.com.db.$Criteria;
 import momomo.com.db.entities.$Entity;
 import momomo.com.db.entities.$EntityId;
-import momomo.com.db.$Criteria;
 import org.hibernate.CacheMode;
 import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import java.io.Serializable;
@@ -15,15 +14,7 @@ import java.util.List;
 /**
  * @author Joseph S.
  */
-public interface $SessionCriteria extends $Criteria, $SessionRepositoryDeclaration {
-    
-    /////////////////////////////////////////////////////////////////////
-    
-    private Session session() {
-        return repository().session();
-    }
-    
-    /////////////////////////////////////////////////////////////////////
+public interface $SessionCriteria extends $Criteria, $SessionDeclaration {
     
     default <T extends $Entity> Criteria criteria(Class<T> entityClass) {
         return criteria(entityClass, entityClass.getName().toLowerCase());

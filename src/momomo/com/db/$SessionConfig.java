@@ -155,29 +155,7 @@ public abstract class $SessionConfig<DATABASE extends $Database> {
     
     /////////////////////////////////////////////////////////////////////
     
-    @Accessors(chain = true, fluent = true) @Setter public static final class Params {
-        private final Export export = new Export();
-        
-        public <E extends Exception> Params export(Lambda.V1E<Export, E> lambda) throws E{
-            lambda.call(this.export); return this;
-        }
-        
-        @Accessors(chain = true, fluent = true) @Setter public static final class Export {
-            String              delimiter   = ";";
-            String              outputFile  = IO.getCanonicalPath(IO.tmpFileCreate());
-            boolean             haltOnError = true;
-            TargetType          target      = TargetType.SCRIPT;
-            SchemaExport.Action action      = SchemaExport.Action.CREATE;
-        }
-    }
-    
-    @Overridable protected Params params() {
-        return new Params();
-    }
-    
     public SessionFactory create() {
-        Params params = params();
-        
         ensure();
         
         properties();
@@ -227,21 +205,14 @@ public abstract class $SessionConfig<DATABASE extends $Database> {
         
         /////////////////////////////////////////////////////////////////////
         
-        SchemaExport export = new SchemaExport();
-        export.setOutputFile  (params.export.outputFile);
-        export.setDelimiter   (params.export.delimiter);
-        export.setHaltOnError (params.export.haltOnError);
+        Export export = export(new Export(metadata));
         
         onExport(export);
-        
-        if ( params.export.action != null ) {
-            export.execute(EnumSet.of(params.export.target), params.export.action, metadata);
-        }
-        
+    
         /////////////////////////////////////////////////////////////////////
         
         // Now the sql has been generated, so we can call migrate to do some stuff for us should we want to
-        migrate( new File(params.export.outputFile) );
+        migrate( new File(export.outputFile) );
     
         /////////////////////////////////////////////////////////////////////
         
@@ -285,8 +256,33 @@ public abstract class $SessionConfig<DATABASE extends $Database> {
         
     }
     
-    @Overridable protected void onExport(SchemaExport export) {
+    @Accessors(chain = true, fluent = true) @Setter public static final class Export {
+        public final MetadataImpl metadata;
+        public final SchemaExport schema;
+    
+        public Export(MetadataImpl metadata) {
+            this.metadata = metadata;
+            this.schema   = new SchemaExport();
+        }
         
+        String              delimiter   = ";";
+        String              outputFile  = IO.getCanonicalPath(IO.tmpFileCreate());
+        boolean             haltOnError = true;
+        TargetType          target      = TargetType.SCRIPT;
+        SchemaExport.Action action      = SchemaExport.Action.CREATE;
+    }
+    @Overridable protected Export export(Export export) {
+        export.schema.setOutputFile  (export.outputFile);
+        export.schema.setDelimiter   (export.delimiter);
+        export.schema.setHaltOnError (export.haltOnError);
+    
+        return export; 
+    }
+    
+    @Overridable public void onExport(Export export) {
+        if ( export.action != null ) {
+            export.schema.execute(EnumSet.of(export.target), export.action, export.metadata);
+        }
     }
     
     /**

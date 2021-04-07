@@ -2,22 +2,12 @@ package momomo.com.db.sessionfactory;
 
 import momomo.com.db.entities.$Entity;
 import momomo.com.db.session.$SessionOther;
-import org.hibernate.SessionFactory;
 import org.hibernate.metadata.ClassMetadata;
 
 /**
  * @author Joseph S.
  */
-public interface $SessionFactoryOther extends $SessionOther {
-    
-    /////////////////////////////////////////////////////////////////////
-    
-    @Override
-    $SessionFactoryRepository repository();
-    
-    private SessionFactory sessionFactory() {
-        return repository().sessionFactory();
-    }
+public interface $SessionFactoryOther extends $SessionOther, $SessionFactoryDeclaration {
     
     /////////////////////////////////////////////////////////////////////
     

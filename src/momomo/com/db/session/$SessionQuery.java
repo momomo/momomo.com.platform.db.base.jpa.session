@@ -1,7 +1,6 @@
 package momomo.com.db.session;
 
 import momomo.com.db.$SqlOperations;
-import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import java.util.List;
@@ -9,13 +8,7 @@ import java.util.List;
 /**
  * @author Joseph S.
  */
-public interface $SessionQuery extends $SqlOperations, $SessionRepositoryDeclaration {
-    
-    /////////////////////////////////////////////////////////////////////
-    
-    private Session session() {
-        return repository().session();
-    }
+public interface $SessionQuery extends $SqlOperations, $SessionDeclaration {
     
     /////////////////////////////////////////////////////////////////////
     

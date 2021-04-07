@@ -20,14 +20,7 @@ import java.util.regex.Pattern;
 /**
  * @author Joseph S.
  */
-public interface $SessionFactoryCriteria extends $SessionCriteria {
-
-    /////////////////////////////////////////////////////////////////////
-
-    @Override
-    $SessionFactoryRepository repository();
-
-    /////////////////////////////////////////////////////////////////////
+public interface $SessionFactoryCriteria extends $SessionCriteria, $SessionFactoryRepositoryDeclaration {
 
     // TODO add a way to pass exclusion keys
     default <T extends $Entity> T findByEntity(T entity, Set<String> ignoreFields) {
@@ -53,11 +46,9 @@ public interface $SessionFactoryCriteria extends $SessionCriteria {
         return null;
     }
 
-
     default <T extends $Entity> List<T> findAllInProperty(Class<T> entityClass, String property, List<Object> values) {
         return findAllByProperty(entityClass, property, values.toArray());
     }
-
 
     private Criteria buildCriteriaObject(Object object, Set<String> ignoreFields) {
         Class<? extends $Entity> klass = Reflects.cast(object.getClass());

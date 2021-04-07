@@ -11,7 +11,7 @@ import org.hibernate.metadata.ClassMetadata;
 import java.io.Serializable;
 import java.util.List;
 
-public interface $ServiceEntityClass<T extends $EntityId>  extends $SessionFactoryRepositoryDeclaration {
+public interface $ServiceEntityClass<T extends $EntityId> extends $SessionFactoryRepositoryDeclaration {
     
     Class<T> entityClass();
     

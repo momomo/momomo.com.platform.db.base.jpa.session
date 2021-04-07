@@ -5,12 +5,12 @@ import org.hibernate.Session;
 /**
  * @author Joseph S.
  */
-public interface $SessionNewRequire extends $SessionRepositoryDeclaration {
+public interface $SessionNewRequire extends $SessionDeclaration {
     
     Session newSession    ();
     Session requireSession();
     
-    default Session session() {
+    @Override default Session session() {
         return session(false);
     }
     

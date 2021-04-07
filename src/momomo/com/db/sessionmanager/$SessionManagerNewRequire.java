@@ -1,20 +1,24 @@
-package momomo.com.db.sessionfactory;
+package momomo.com.db.sessionmanager;
 
 import momomo.com.db.$SessionConfigContextBase;
+import momomo.com.db.sessionfactory.$SessionFactory;
+import momomo.com.db.sessionfactory.$SessionFactoryNewRequire;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
  * @author Joseph S.
  */
-public interface $SessionFactoryNewRequireHibernate extends $SessionFactoryNewRequire, $SessionFactoryRepositoryDeclaration {
+public interface $SessionManagerNewRequire extends $SessionFactoryNewRequire {
+    
+    SessionFactory sessionFactory();
     
     /**
      * We override it for Hibernate! 
      */
     @Override
     default Session newSession() {
-        return newSession(repository().sessionFactory());
+        return newSession(sessionFactory());
     }
     
     /**

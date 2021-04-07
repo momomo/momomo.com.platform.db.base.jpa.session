@@ -4,11 +4,14 @@ package momomo.com.db;
 
 import momomo.com.Reflects;
 import momomo.com.db.entities.$EntityId;
+import momomo.com.db.sessionfactory.$SessionFactoryDeclaration;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 /**
  * @author Joseph S.
  */
-public abstract class $Service<T extends $EntityId> implements $ServiceEntityClass<T>, $ServiceEntity<T> {
+public abstract class $Service<T extends $EntityId> implements $ServiceEntityClass<T>, $ServiceEntity<T>, $SessionFactoryDeclaration {
     public final Class<T> entityClass;
     
     /**
@@ -34,4 +37,18 @@ public abstract class $Service<T extends $EntityId> implements $ServiceEntityCla
     public final Class<T> entityClass() {
         return entityClass;
     }
+    
+    /////////////////////////////////////////////////////////////////////
+    
+    @Override
+    public Session session() {
+        return repository().session();
+    }
+    
+    @Override
+    public SessionFactory sessionFactory() {
+        return repository().sessionFactory();   // We provide this implementation because one library service requires it, such as Hibernate where Spring does not. But no cost either way. 
+    }
+    
+    /////////////////////////////////////////////////////////////////////
 }
