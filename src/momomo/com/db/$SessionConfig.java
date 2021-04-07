@@ -120,7 +120,7 @@ public abstract class $SessionConfig<DATABASE extends $Database> {
         }
     }
     
-    protected final boolean existsDB() {
+    protected boolean existsDB() {
         try {
             return database.exists();    
         }
